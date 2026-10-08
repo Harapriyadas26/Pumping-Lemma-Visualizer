@@ -1,0 +1,282 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pumping Lemma Visualizer </title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <div class="logo">⚡ AutomataLab</div>
+        <span class="nav-label">Theory of Computation</span>
+    </header>
+
+    <main class="container">
+
+        <!-- Introduction -->
+        <section class="hero">
+            <h1>Pumping Lemma <span>Visualizer</span></h1>
+            <p>
+                Explore non-regular languages through interactive
+                string decomposition, pumping simulations,
+                and step-by-step mathematical proofs.
+            </p>
+        </section>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard">
+
+            <!-- Left Panel -->
+            <section class="panel controls-panel">
+                <h2>⚙ Experiment Setup</h2>
+                <p class="subtitle">
+                    Configure your pumping lemma experiment.
+                </p>
+
+                <label for="language">Select Language</label>
+                <select id="language">
+                    <option value="anbn">
+                        L = {aⁿbⁿ | n ≥ 0}
+                    </option>
+                    <option value="0n1n">
+                        L = {0ⁿ1ⁿ | n ≥ 0}
+                    </option>
+                    <option value="anbncn">
+                        L = {aⁿbⁿcⁿ | n ≥ 0}
+                    </option>
+                </select>
+
+                <label for="pumpingLength">
+                    Pumping Length (p)
+                </label>
+                <input
+                    type="number"
+                    id="pumpingLength"
+                    value="4"
+                    min="1"
+                    max="30"
+                >
+
+                <button id="generateBtn" class="primary-btn">
+                    Generate Witness String →
+                </button>
+
+<!-- Teacher Demo Mode -->
+<button id="startDemoBtn" class="demo-start-btn" type="button">
+    ▶ Start Guided Demo
+</button>
+
+<div id="demoPanel" class="demo-panel" hidden>
+
+    <div class="demo-header">
+        <span>TEACHER DEMO MODE</span>
+        <span id="demoProgress">Stage 1 of 5</span>
+    </div>
+
+    <div class="demo-progress-track">
+        <div id="demoProgressBar"></div>
+    </div>
+
+    <h3 id="demoTitle">Welcome to Demo Mode</h3>
+
+    <p id="demoDescription">
+        Follow the guided steps to understand
+        the Pumping Lemma.
+    </p>
+
+    <div class="demo-buttons">
+        <button id="demoPrevious" type="button">
+            ← Back
+        </button>
+
+        <button id="demoNext" type="button">
+            Next →
+        </button>
+    </div>
+
+    <button id="demoExit" class="demo-exit" type="button">
+        Exit Demo
+    </button>
+
+</div>
+
+
+                <div class="info-box">
+                    <strong>What is pumping length?</strong>
+                    <p>
+                        The pumping length p is a positive integer
+                        assumed to exist if the language is regular.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Right Panel -->
+            <section class="panel visualization-panel">
+                <h2>◈ String Visualization</h2>
+                <p class="subtitle">
+                    Generate a witness string to begin.
+                </p>
+
+                <div class="string-container">
+                    <span class="small-label">WITNESS STRING (w)</span>
+                    <div id="witnessString" class="string-display">
+                        No string generated
+                    </div>
+                    <div id="stringLength" class="length-label">
+                        Length: —
+                    </div>
+                </div>
+
+                <h3>String Decomposition</h3>
+                <p class="subtitle">w = xyz</p>
+
+                <div class="decomposition">
+                    <div class="segment x-segment">
+                        <span>x</span>
+                        <strong id="xValue">—</strong>
+                    </div>
+
+                    <div class="segment y-segment">
+                        <span>y</span>
+                        <strong id="yValue">—</strong>
+                    </div>
+
+                    <div class="segment z-segment">
+                        <span>z</span>
+                        <strong id="zValue">—</strong>
+                    </div>
+                </div>
+
+<!-- Interactive Decomposition Controls -->
+<div class="decomposition-controls" id="decompositionControls" hidden>
+
+    <h3>Customize Decomposition</h3>
+
+    <p class="subtitle">
+        Adjust the sliders to change x and y.
+    </p>
+
+    <label for="xSlider">
+        Length of x:
+        <strong id="xLengthLabel">0</strong>
+    </label>
+
+    <input
+        type="range"
+        id="xSlider"
+        min="0"
+        max="3"
+        value="0"
+    >
+
+    <label for="ySlider">
+        Length of y:
+        <strong id="yLengthLabel">1</strong>
+    </label>
+
+    <input
+        type="range"
+        id="ySlider"
+        min="1"
+        max="4"
+        value="1"
+    >
+
+</div>
+
+
+                <div class="constraints">
+                    <h3>Pumping Constraints</h3>
+                    <p id="constraint1">○ |xy| ≤ p</p>
+                    <p id="constraint2">○ |y| &gt; 0</p>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Pumping Simulation -->
+        <section class="panel simulation-panel">
+            <h2>▶ Pumping Simulation</h2>
+            <p class="subtitle">
+                Change the pumping exponent i to explore xyⁱz.
+            </p>
+
+            <div class="pump-controls">
+                <label for="pumpValue">Pumping Exponent (i)</label>
+                <input
+                    type="range"
+                    id="pumpValue"
+                    min="0"
+                    max="5"
+                    value="0"
+                >
+                <span id="pumpLabel">i = 0</span>
+            </div>
+
+            <div class="result-box">
+                <span class="small-label">PUMPED STRING (xyⁱz)</span>
+                <div id="pumpedString" class="string-display">
+                    Generate a string first
+                </div>
+                <p id="membershipResult">
+                    Waiting for simulation...
+                </p>
+            </div>
+        </section>
+
+        <!-- Proof Panel -->
+        <section class="panel proof-panel">
+            <h2>∑ Mathematical Proof</h2>
+            <p class="subtitle">
+                Step-by-step reasoning using the Pumping Lemma.
+            </p>
+
+            <div id="proofSteps">
+                <p>
+                    Generate a witness string to begin
+                    the proof walkthrough.
+                </p>
+            </div>
+
+<!-- Step-by-Step Proof Navigation -->
+<div id="proofNavigation" class="proof-navigation" hidden>
+
+    <button id="prevProof" class="proof-btn" type="button">
+        ← Previous
+    </button>
+
+    <span id="proofCounter">Step 1 of 5</span>
+
+    <button id="nextProof" class="proof-btn" type="button">
+        Next →
+    </button>
+
+</div>
+
+<!-- Export Mathematical Proof -->
+<div class="proof-export">
+    <button id="copyProofBtn" type="button">
+        📋 Copy Mathematical Proof
+    </button>
+
+    <p id="copyStatus" role="status" aria-live="polite"></p>
+</div>
+
+
+        </section>
+
+        <footer>
+            Pumping Lemma Visualizer • Theory of Computation Project
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

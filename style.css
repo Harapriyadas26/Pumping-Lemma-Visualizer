@@ -1,0 +1,870 @@
+
+/* ================================
+   GLOBAL DESIGN
+================================ */
+
+:root {
+    --bg: #080d1a;
+    --panel: #111a2e;
+    --border: #263550;
+    --text: #f1f5ff;
+    --muted: #94a3b8;
+    --primary: #8b5cf6;
+    --cyan: #22d3ee;
+    --green: #34d399;
+    --orange: #fbbf24;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 85% 5%,
+            #24204c 0%, transparent 35%),
+        var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+    background: rgba(15, 23, 42, 0.85);
+    border-bottom: 1px solid var(--border);
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--cyan);
+}
+
+.nav-label {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* ================================
+   MAIN CONTAINER
+================================ */
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 40px 24px;
+}
+
+/* ================================
+   HERO SECTION
+================================ */
+
+.hero {
+    text-align: center;
+    padding: 40px 20px 55px;
+}
+
+.eyebrow {
+    display: inline-block;
+    color: var(--cyan);
+    letter-spacing: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.hero h1 span {
+    background: linear-gradient(
+        90deg,
+        #a78bfa,
+        #22d3ee
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    max-width: 680px;
+    margin: auto;
+    color: var(--muted);
+    font-size: 16px;
+}
+
+/* ================================
+   DASHBOARD LAYOUT
+================================ */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 380px minmax(0, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* ================================
+   PANELS
+================================ */
+
+.panel {
+    background: rgba(17, 26, 46, 0.95);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 24px;
+    min-width: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    transition: border-color 0.3s ease;
+}
+
+.panel:hover {
+    border-color: #57538a;
+}
+
+.panel h2 {
+    font-size: 21px;
+    margin-bottom: 8px;
+}
+
+.panel h3 {
+    font-size: 16px;
+    margin: 22px 0 12px;
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+/* ================================
+   FORM CONTROLS
+================================ */
+
+.controls-panel label {
+    display: block;
+    margin: 22px 0 9px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+select,
+input[type="number"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #36445e;
+    border-radius: 10px;
+    background: #0a1325;
+    color: var(--text);
+    font-size: 15px;
+    outline: none;
+}
+
+select:focus,
+input:focus {
+    border-color: var(--primary);
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 15px;
+    margin-top: 26px;
+    background: linear-gradient(
+        90deg,
+        #7c3aed,
+        #4f46e5
+    );
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s,
+                box-shadow 0.2s;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+/* ================================
+   INFORMATION BOX
+================================ */
+
+.info-box {
+    background: rgba(34, 211, 238, 0.07);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 26px;
+}
+
+.info-box strong {
+    color: var(--cyan);
+    font-size: 14px;
+}
+
+.info-box p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* ================================
+   STRING VISUALIZATION
+================================ */
+
+.string-container,
+.result-box {
+    background: #0a1325;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+}
+
+.small-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 14px;
+}
+
+.string-display {
+    font-family: Consolas, monospace;
+    font-size: clamp(18px, 3vw, 30px);
+    font-weight: 700;
+    color: var(--cyan);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    padding: 12px 0;
+    min-height: 55px;
+}
+
+.length-label {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* ================================
+   XYZ DECOMPOSITION
+================================ */
+
+.decomposition {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.segment {
+    padding: 20px 10px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid;
+    min-width: 0;
+}
+
+.segment span {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.segment strong {
+    display: block;
+    font-family: Consolas, monospace;
+    font-size: 20px;
+    overflow-wrap: anywhere;
+}
+
+.x-segment {
+    background: rgba(34, 211, 238, 0.08);
+    border-color: rgba(34, 211, 238, 0.4);
+    color: var(--cyan);
+}
+
+.y-segment {
+    background: rgba(251, 191, 36, 0.08);
+    border-color: rgba(251, 191, 36, 0.4);
+    color: var(--orange);
+}
+
+.z-segment {
+    background: rgba(52, 211, 153, 0.08);
+    border-color: rgba(52, 211, 153, 0.4);
+    color: var(--green);
+}
+
+/* ================================
+   PUMPING CONSTRAINTS
+================================ */
+
+.constraints {
+    margin-top: 24px;
+    padding: 18px;
+    background: #0a1325;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.constraints h3 {
+    margin: 0 0 12px;
+}
+
+.constraints p {
+    margin: 8px 0;
+    color: var(--muted);
+    font-family: Consolas, monospace;
+}
+
+/* ================================
+   PUMPING SIMULATION
+================================ */
+
+.simulation-panel {
+    margin-top: 4px;
+}
+
+.pump-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.pump-controls label {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+input[type="range"] {
+    flex: 1;
+    min-width: 150px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+#pumpLabel {
+    background: rgba(139, 92, 246, 0.16);
+    color: #c4b5fd;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+#membershipResult {
+    margin-top: 14px;
+    color: var(--muted);
+    font-weight: 600;
+}
+
+/* ================================
+   MATHEMATICAL PROOF
+================================ */
+
+.proof-panel {
+    border-left: 3px solid var(--primary);
+}
+
+#proofSteps {
+    background: #0a1325;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    color: var(--muted);
+    line-height: 1.9;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    text-align: center;
+    color: #64748b;
+    padding: 24px 10px;
+    font-size: 13px;
+}
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media (max-width: 900px) {
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        padding: 24px 16px;
+    }
+
+    .hero {
+        padding: 25px 10px 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 16px;
+    }
+
+    .nav-label {
+        display: none;
+    }
+
+    .panel {
+        padding: 20px;
+    }
+
+    .decomposition {
+        gap: 8px;
+    }
+
+    .segment {
+        padding: 14px 5px;
+    }
+
+    .segment strong {
+        font-size: 16px;
+    }
+}
+
+/* ================================
+   ACCESSIBILITY
+================================ */
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* ================================
+   INTERACTIVE DECOMPOSITION
+================================ */
+
+.decomposition-controls {
+    margin-top: 24px;
+    padding: 22px;
+    background: #0a1325;
+    border: 1px solid #36445e;
+    border-radius: 12px;
+}
+
+.decomposition-controls[hidden] {
+    display: none;
+}
+
+.decomposition-controls h3 {
+    margin-top: 0;
+    color: #c4b5fd;
+}
+
+.decomposition-controls label {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 18px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.decomposition-controls label strong {
+    color: #22d3ee;
+}
+
+.decomposition-controls input[type="range"] {
+    display: block;
+    width: 100%;
+    accent-color: #8b5cf6;
+}
+
+/* ================================
+   STEP 7: PUMPING VISUALIZATION
+================================ */
+
+.pumped-x {
+    color: #22d3ee;
+}
+
+.pumped-y {
+    color: #fbbf24;
+    animation: pumpGlow 0.4s ease;
+}
+
+.pumped-z {
+    color: #34d399;
+}
+
+.membership-valid {
+    color: #34d399 !important;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.membership-invalid {
+    color: #fb7185 !important;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+@keyframes pumpGlow {
+    from {
+        opacity: 0.3;
+        text-shadow: 0 0 20px #fbbf24;
+    }
+
+    to {
+        opacity: 1;
+        text-shadow: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pumped-y {
+        animation: none;
+    }
+}
+
+/* ================================
+   STEP 8: PROOF WALKTHROUGH
+================================ */
+
+#proofSteps h3 {
+    color: #c4b5fd;
+    font-size: 19px;
+    margin: 0 0 14px;
+}
+
+#proofSteps p {
+    color: #cbd5e1;
+    line-height: 1.9;
+    font-size: 15px;
+}
+
+.proof-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-top: 22px;
+}
+
+.proof-navigation[hidden] {
+    display: none;
+}
+
+.proof-btn {
+    background: #273454;
+    color: white;
+    border: 1px solid #465579;
+    padding: 12px 22px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.proof-btn:hover:not(:disabled) {
+    background: #7c3aed;
+    transform: translateY(-2px);
+}
+
+.proof-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+#proofCounter {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .proof-navigation {
+        flex-wrap: wrap;
+    }
+
+    .proof-btn {
+        padding: 10px 12px;
+    }
+}
+
+/* ================================
+   STEP 9A: ANIMATED STRING BOXES
+================================ */
+
+.character-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 34px;
+    height: 44px;
+    padding: 5px;
+
+    margin: 3px;
+    border-radius: 8px;
+
+    font-family: Consolas, monospace;
+    font-size: 23px;
+    font-weight: 700;
+
+    border: 1px solid;
+
+    animation: characterAppear 0.25s ease;
+}
+
+/* x = CYAN */
+.char-x {
+    background: rgba(34, 211, 238, 0.12);
+    border-color: rgba(34, 211, 238, 0.5);
+    color: #22d3ee;
+}
+
+/* y = YELLOW */
+.char-y {
+    background: rgba(251, 191, 36, 0.12);
+    border-color: rgba(251, 191, 36, 0.5);
+    color: #fbbf24;
+    box-shadow: 0 0 12px rgba(251, 191, 36, 0.12);
+}
+
+/* z = GREEN */
+.char-z {
+    background: rgba(52, 211, 153, 0.12);
+    border-color: rgba(52, 211, 153, 0.5);
+    color: #34d399;
+}
+
+/* Smooth appearance animation */
+@keyframes characterAppear {
+    from {
+        opacity: 0;
+        transform: translateY(6px) scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Keep the character boxes aligned */
+#witnessString {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .character-box {
+        animation: none;
+    }
+}
+
+/* =================================
+   STEP 9B: TEACHER DEMO MODE
+================================= */
+
+.demo-start-btn {
+    width: 100%;
+    padding: 14px;
+    margin-top: 12px;
+
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid #22d3ee;
+    border-radius: 10px;
+
+    color: #22d3ee;
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.demo-start-btn:hover {
+    background: rgba(34, 211, 238, 0.18);
+    transform: translateY(-2px);
+}
+
+.demo-panel {
+    margin-top: 22px;
+    padding: 20px;
+
+    background: #0a1325;
+    border: 1px solid #8b5cf6;
+    border-radius: 14px;
+}
+
+.demo-panel[hidden] {
+    display: none;
+}
+
+.demo-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    font-size: 11px;
+    font-weight: 700;
+    color: #c4b5fd;
+}
+
+.demo-progress-track {
+    height: 6px;
+    margin: 16px 0 22px;
+
+    background: #273454;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#demoProgressBar {
+    width: 20%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #8b5cf6,
+        #22d3ee
+    );
+
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+#demoTitle {
+    color: #f1f5ff;
+    font-size: 17px;
+    margin: 0 0 12px;
+}
+
+#demoDescription {
+    color: #94a3b8;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.demo-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.demo-buttons button {
+    flex: 1;
+    padding: 11px;
+
+    border: 1px solid #465579;
+    border-radius: 8px;
+
+    background: #273454;
+    color: white;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.demo-buttons button:hover:not(:disabled) {
+    background: #7c3aed;
+}
+
+.demo-buttons button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.demo-exit {
+    width: 100%;
+    margin-top: 12px;
+    padding: 9px;
+
+    color: #fb7185;
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.demo-highlight {
+    border-color: #22d3ee !important;
+    box-shadow: 0 0 22px rgba(34, 211, 238, 0.18);
+    transition: 0.3s;
+}
+
+/* =================================
+   STEP 9C: PROOF EXPORT
+================================= */
+
+.proof-export {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#copyProofBtn {
+    width: 100%;
+    padding: 14px 20px;
+    background: linear-gradient(90deg, #0e7490, #2563eb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#copyProofBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(34, 211, 238, 0.2);
+}
+
+#copyStatus {
+    color: #34d399;
+    margin-top: 10px;
+    font-size: 13px;
+    min-height: 20px;
+}
